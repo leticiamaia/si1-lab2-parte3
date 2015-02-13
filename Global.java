@@ -1,12 +1,17 @@
-import java.io.FileReader;
+  import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.List;
 
 import au.com.bytecode.opencsv.CSVReader;
-import models.Episodio;
-import models.GenericDAO;
-import models.Serie;
-import play.*;
+  import models.*;
+  import models.DepoisDoUltimoAssitido;
+  import models.Episodio;
+  import models.GenericDAO;
+  import models.IndicadorDeProximoEp;
+  import models.MaisAntigoNaoAssistido;
+  import models.Serie;
+  import play.*;
+  import models.MaisAntigoNaoAssistido;
 import play.db.jpa.JPA;
 
 
@@ -41,8 +46,12 @@ public class Global extends GlobalSettings {
 			        	}
 
 			        }
-			        
+
+
 			        for (int i = 0; i < series.size(); i++) {
+						IndicadorDeProximoEp indicador = new DepoisDoUltimoAssitido(series.get(i));
+						dao.persist(indicador);
+						series.get(i).setIndicador(indicador);
 						dao.persist(series.get(i));
 					}
 			         

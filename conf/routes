@@ -6,6 +6,6 @@
 GET     /                           controllers.Application.index()
 POST    /serie/status               controllers.Application.mudarStatusDaSerie()
 POST    /episodio/status            controllers.Application.mudarStatusDoEpisodio()
-
+POST    /serie/indicador            controllers.Application.mudarIndicadorDaSerie()
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public/assets/", file)

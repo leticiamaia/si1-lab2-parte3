@@ -3,11 +3,7 @@ package models;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name="serie")
@@ -19,17 +15,28 @@ public class Serie implements Comparable<Serie> {
 
 	private String nome;
 	private boolean status;
-	
+
+	@OneToOne
+	private IndicadorDeProximoEp indicador;
+
 	@OneToMany(mappedBy = "serie")
-	private List<Episodio> episodios;
-		
+	private List<Episodio> episodios=null;
+
 	public Serie(String nome) {
 		this.nome = nome;
 		this.status = false;
 		this.episodios = new ArrayList<Episodio>();
 	}
-		
+
 	public Serie() {
+	}
+
+	public IndicadorDeProximoEp getIndicador() {
+		return indicador;
+	}
+
+	public void setIndicador(IndicadorDeProximoEp indicador) {
+		this.indicador = indicador;
 	}
 
 	public String getNome() {
@@ -92,18 +99,7 @@ public class Serie implements Comparable<Serie> {
 	}
 	
 	public Episodio getProximoEpisodio(int temporada) {
-		List<Episodio> eps = getEpisodios(temporada);
-		int i = 0;
-		int index = -1;
-		while (i < eps.size()) {
-			if(eps.get(i).isAssistido()) {
-				index = i;
-			}
-			i++;
-		}
-		if(index == i-1) {return null;}
-		if(index == -1) {return eps.get(0);}
-		return eps.get(index+1);	
+		return indicador.proximoEpisodio(temporada, this);
 	}
 	
 	public List<Integer> getTemporadas() {

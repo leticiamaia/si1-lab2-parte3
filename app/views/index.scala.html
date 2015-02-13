@@ -62,9 +62,25 @@
 									<span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span> Não Acompanhar
 							    </button>
 							</form>
-						    <p class="title-item text-info">@serie.getNome</p>
-						    <p class="title-description">@serie.getTotalDeEpisodios() episódio(s), 
-						    @serie.getTotalDeEpisodiosAssistidos() assistido(s) e @serie.getTotalDeEpisodiosAssistir() a assistir</p>
+							<p class="title-item text-info">@serie.getNome </p>
+							<p class="title-description">@serie.getTotalDeEpisodios() episódio(s),
+								@serie.getTotalDeEpisodiosAssistidos() assistido(s) e @serie.getTotalDeEpisodiosAssistir() a assistir</p>
+							<form class="pull-left" method="post" action="/serie/indicador">
+								<input type="hidden" name="id" value="@serie.getId">
+								<input type="hidden" name="strategy" value="1">
+								<button type="submit" class="btn btn-info btn-xs pull-left">
+									Opção 1
+								</button> Escolher Próximo como o depois do último assistido.
+							</form>
+							<br><br>s
+							<form class="pull-left" method="post" action="/serie/indicador">
+								<input type="hidden" name="id" value="@serie.getId">
+								<input type="hidden" name="strategy" value="2">
+								<button type="submit" class="btn btn-info btn-xs pull left">
+									Opção 2
+								</button> Escolher Próximo como o primeiro não assistido.
+							</form>
+							<br><br>
 						    @if(serie.hasTemporadaAssistidaCompleta) {
 							    <div class="panel panel-success">
 							    	<div class="panel-heading">Temporadas Assistidas Completas:</div>
