@@ -73,6 +73,6 @@ public class Application extends Controller {
 		serie.setIndicador(indicador);
 		dao.merge(serie);
 		dao.flush();
-		return redirect("/#serie-" + serie.getId());
+		return redirect("/#serie-" + id);
 	}
 }
