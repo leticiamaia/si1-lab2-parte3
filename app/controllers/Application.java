@@ -23,8 +23,8 @@ public class Application extends Controller {
 		List<Serie> seriesAssistir = new ArrayList<Serie>(); 
 		List<Serie> seriesAssistindo = new ArrayList<Serie>();
 		for (int i = 0; i < series.size(); i++) {
-			if(series.get(i).isAssistindo()) seriesAssistindo.add(series.get(i));
-			else seriesAssistir.add(series.get(i));
+			if(series.get(i).isAssistindo()) {seriesAssistindo.add(series.get(i));}
+			else {seriesAssistir.add(series.get(i));}
 		}
 		Collections.sort(seriesAssistir);
 		Collections.sort(seriesAssistindo);

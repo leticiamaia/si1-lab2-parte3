@@ -104,8 +104,8 @@ public class Episodio implements Comparable<Episodio> {
 
 	@Override
 	public int compareTo(Episodio episodio) {
-		if(this.temporada > episodio.getTemporada()) return -1;
-		if(this.temporada < episodio.getTemporada()) return 1;
+		if(this.temporada > episodio.getTemporada()) {return -1;}
+		if(this.temporada < episodio.getTemporada()) {return 1;}
 		return episodio.getNumero() - this.numero;
 	}
 
